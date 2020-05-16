@@ -3,6 +3,8 @@
   flex-wrap: wrap;
   position: relative;
   flex-direction: column-reverse;
+  width: 1024px;
+  height: 512px;
 }
 
 #color-image .row{
@@ -16,4 +18,7 @@
 
 #color-image .color-block{
   display: block;
+  width: 4px;
+  height: 4px;
+  box-sizing: border-box;
 }

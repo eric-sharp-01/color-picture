@@ -11,12 +11,16 @@ class ColorBlock extends React.Component{
   }
 
   render() {
-    const {r, g, b} = {r: 256, g: 0, b: 0, ...this.props.color};
-    let background = `rgb(${r}, ${g}, ${b})`;
-    let style={ background, width: 4, height: 4 };
-    return (
-      <div className="color-block" style={style}></div>
-    );
+    let style = null;
+    if(this.props.color){
+      const {r, g, b} = this.props.color;
+      style = { background: `rgb(${r}, ${g}, ${b})` };
+    }else{
+      style= {
+        background: "linear-gradient(45deg, black, blue, white)"
+      };
+    }
+    return <div className="color-block" style={style}></div>;
   }
 }
 

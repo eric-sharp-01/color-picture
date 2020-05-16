@@ -7,7 +7,7 @@ class App extends React.Component{
   constructor(props){
     super(props);
     this.state = {
-      grid: []
+      grid: null
     }
   }
 
@@ -46,25 +46,28 @@ class App extends React.Component{
   }
 
   mathPattern = (x, y) => {
-    return y <= (16 * (1 + (x / 256) * 2) * Math.cos((x - 16) * Math.PI / 32) + 64);
+    return y <= (16 * (1 + (x / 256) * 2) * Math.cos(x * Math.PI / 32) + 64);
   }
 
   render() {
-    let picture = [];
-    if(this.state.grid.length === 128){
+    if(this.state.grid){
+      let picture = [];
       for (let row = 0; row < 128 ; row++) {
         let rowElements = [];
         for (let col = 0; col < 256; col++) {
-          rowElements.push(<ColorBlock key={`${row}-${col}`} color={this.state.grid[row][col]} />)
+          let colorPoint = this.state.grid[row][col];
+          rowElements.push(<ColorBlock key={`${row}-${col}`} color={colorPoint} />);
         }
         picture.push(<div key={row} className="row">{rowElements}</div>)
       }
+      return (
+        <div id="color-image">
+          {picture}
+        </div>
+      );
+    }else{
+      return null;
     }
-    return (
-      <div id="color-image" style={{width: 1024, height: 512}}>
-        {picture}
-      </div>
-    );
   }
 }
 
